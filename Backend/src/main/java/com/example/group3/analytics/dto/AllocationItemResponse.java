@@ -23,9 +23,9 @@ public class AllocationItemResponse {
         this.groupBy = groupBy;
     }
 
-    public String getGroupValue() {
-        return groupValue;
-    }
+//    public String getGroupValue() {
+//        return groupValue;
+//    }
 
     public void setGroupValue(String groupValue) {
         this.groupValue = groupValue;
@@ -46,4 +46,6 @@ public class AllocationItemResponse {
     public void setWeightPct(BigDecimal weightPct) {
         this.weightPct = weightPct;
     }
+
+    public String getAssetType() { return groupValue;}
 }

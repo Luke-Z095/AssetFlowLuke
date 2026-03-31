@@ -38,4 +38,10 @@ public class RiskAlertResponse {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public void setSuggestion(String suggestion) {
+        this.suggestion = suggestion;
+    }
+
+    public String getSuggestion() { return suggestion;}
 }
