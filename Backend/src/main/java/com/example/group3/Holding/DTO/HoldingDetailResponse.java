@@ -1,30 +1,37 @@
 package com.example.group3.Holding.DTO;
 
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class CreateHoldingRequest {
-    @NotNull(message = "assetId cannot be null")
+public class HoldingDetailResponse {
+    private Long id;
     private Long assetId;
 
-    @NotNull(message = "quantity cannot be null")
-    @DecimalMin(value = "0.0001", message = "quantity must be greater than 0")
+    private String assetSymbol;
+    private String assetName;
+    private String assetType;
+    private String market;
+
     private BigDecimal quantity;
-
-    @NotNull(message = "averageCost cannot be null")
-    @DecimalMin(value = "0.0", inclusive = false, message = "averageCost must be greater than 0")
     private BigDecimal averageCost;
-
     private String costCurrency;
     private LocalDate purchaseDate;
     private String accountName;
     private String notes;
 
-    public CreateHoldingRequest() {
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    public HoldingDetailResponse() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getAssetId() {
@@ -33,6 +40,38 @@ public class CreateHoldingRequest {
 
     public void setAssetId(Long assetId) {
         this.assetId = assetId;
+    }
+
+    public String getAssetSymbol() {
+        return assetSymbol;
+    }
+
+    public void setAssetSymbol(String assetSymbol) {
+        this.assetSymbol = assetSymbol;
+    }
+
+    public String getAssetName() {
+        return assetName;
+    }
+
+    public void setAssetName(String assetName) {
+        this.assetName = assetName;
+    }
+
+    public String getAssetType() {
+        return assetType;
+    }
+
+    public void setAssetType(String assetType) {
+        this.assetType = assetType;
+    }
+
+    public String getMarket() {
+        return market;
+    }
+
+    public void setMarket(String market) {
+        this.market = market;
     }
 
     public BigDecimal getQuantity() {
@@ -81,5 +120,21 @@ public class CreateHoldingRequest {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
