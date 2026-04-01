@@ -29,7 +29,7 @@
         WHERE id = #{id}
     </select>
 
-    <select id="findBySymbol" parameterType="long" resultMap="AssetResultMap">
+    <select id="findBySymbol" parameterType="string" resultMap="AssetResultMap">
         SELECT id, symbol, name, asset_type, market, currency, sector, exchange, is_active
         FROM assets
         WHERE symbol = #{symbol}
