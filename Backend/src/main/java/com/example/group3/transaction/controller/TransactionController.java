@@ -5,10 +5,12 @@ import com.example.group3.transaction.dto.TransactionVO;
 import com.example.group3.transaction.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/transactions")
 @RequiredArgsConstructor
 public class TransactionController {

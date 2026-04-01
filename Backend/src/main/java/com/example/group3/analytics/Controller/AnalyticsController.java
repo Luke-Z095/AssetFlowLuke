@@ -4,13 +4,16 @@ import com.example.group3.analytics.dto.AllocationItemResponse;
 import com.example.group3.analytics.dto.PortfolioSummaryResponse;
 import com.example.group3.analytics.dto.TopHoldingItemResponse;
 import com.example.group3.analytics.Service.AnalyticsService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/portfolio")
 public class AnalyticsController {
 

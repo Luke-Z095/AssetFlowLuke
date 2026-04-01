@@ -5,10 +5,12 @@ import com.example.group3.Holding.Service.HoldingService;
 import com.example.group3.common.Response.PageResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/holdings")
 public class HoldingController {
     private final HoldingService holdingService;
