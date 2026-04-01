@@ -13,22 +13,30 @@ export default function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside style={styles.sidebar}>
-      <div style={styles.logo}>AssetFlow</div>
+    <aside style={{ height: "100%", background: "#020617", padding: "24px 16px" }}>
+      <div
+        style={{
+          marginBottom: "24px",
+          borderBottom: "1px solid #1e293b",
+          paddingBottom: "14px",
+          color: "#f1f5f9",
+          fontSize: "20px",
+          fontWeight: 600,
+          letterSpacing: "0.02em",
+        }}
+      >
+        AssetFlow
+      </div>
 
-      <nav style={styles.menu}>
+      <nav style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         {items.map((item) => {
           const isActive = location.pathname === item.path;
 
           return (
             <Link
-                key={item.name}
-                to={item.path}
-                className="nav-link"
-                style={{
-                    ...styles.link,
-                    ...(isActive ? styles.active : {}),
-                }}
+              key={item.name}
+              to={item.path}
+              className={`nav-link ${isActive ? "nav-link-active" : ""}`}
             >
               {item.name}
             </Link>
@@ -38,37 +46,3 @@ export default function Sidebar() {
     </aside>
   );
 }
-
-const styles = {
-  sidebar: {
-    height: "100%",
-    padding: "24px 16px",
-    background: "#020617",
-  },
-  logo: {
-    fontSize: "20px",
-    fontWeight: 700,
-    color: "#e2e8f0",
-    marginBottom: "28px",
-  },
-  menu: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-  },
-  link: {
-    textDecoration: "none",
-    color: "#94a3b8",
-    fontSize: "15px",
-    fontWeight: 500,
-    padding: "14px 16px",
-    borderRadius: "12px",
-    transition: "all 0.2s ease",
-  },
-  active: {
-    background: "rgba(59,130,246,0.15)",
-    color: "#3b82f6",
-    fontWeight: 700,
-    boxShadow: "inset 3px 0 0 #3b82f6", // 左侧蓝条（很金融风）
-  },
-};

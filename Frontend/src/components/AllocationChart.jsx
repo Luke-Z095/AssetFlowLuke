@@ -19,13 +19,8 @@ export default function AllocationChart({ data = [] }) {
     weightPct: Number(item.weightPct ?? 0),
   }));
 
-  const onPieEnter = (_, index) => {
-    setActiveIndex(index);
-  };
-
-  const onPieLeave = () => {
-    setActiveIndex(-1);
-  };
+  const onPieEnter = (_, index) => setActiveIndex(index);
+  const onPieLeave = () => setActiveIndex(-1);
 
   const renderLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
     const RADIAN = Math.PI / 180;
@@ -49,16 +44,16 @@ export default function AllocationChart({ data = [] }) {
 
   if (!chartData.length) {
     return (
-      <section style={styles.card}>
-        <h2 style={styles.title}>Asset Allocation</h2>
-        <div style={{ color: "#94a3b8" }}>No allocation data</div>
+      <section className="panel" style={{ padding: "24px" }}>
+        <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "20px", color: "#f8fafc" }}>Asset Allocation</h2>
+        <div style={{ color: "#94a3b8", fontSize: "14px" }}>No allocation data</div>
       </section>
     );
   }
 
   return (
-    <section className="chart-card" style={styles.card}>
-      <h2 style={styles.title}>Asset Allocation</h2>
+    <section className="panel chart-card" style={{ padding: "24px" }}>
+      <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "20px", color: "#f8fafc" }}>Asset Allocation</h2>
 
       <div style={{ width: "100%", height: 300 }}>
         <ResponsiveContainer>
@@ -70,7 +65,7 @@ export default function AllocationChart({ data = [] }) {
               innerRadius={60}
               outerRadius={110}
               paddingAngle={2}
-              label={renderLabel} 
+              label={renderLabel}
               onMouseLeave={onPieLeave}
             >
               {chartData.map((entry, index) => (
@@ -78,10 +73,9 @@ export default function AllocationChart({ data = [] }) {
                   key={entry.name}
                   fill={COLORS[index % COLORS.length]}
                   style={{
-                    transform:
-                      index === activeIndex ? "scale(1.08)" : "scale(1)",
+                    transform: index === activeIndex ? "scale(1.06)" : "scale(1)",
                     transformOrigin: "center",
-                    transition: "all 0.2s ease",
+                    transition: "transform 0.2s ease",
                     cursor: "pointer",
                   }}
                   onMouseEnter={() => onPieEnter(entry, index)}
@@ -94,35 +88,15 @@ export default function AllocationChart({ data = [] }) {
               contentStyle={{
                 backgroundColor: "#0f172a",
                 border: "1px solid #334155",
-                borderRadius: "12px",
+                borderRadius: "8px",
                 color: "#e2e8f0",
               }}
             />
 
-            <Legend
-              wrapperStyle={{
-                color: "#94a3b8",
-                fontSize: "12px",
-              }}
-            />
+            <Legend wrapperStyle={{ color: "#94a3b8", fontSize: "12px" }} />
           </PieChart>
         </ResponsiveContainer>
       </div>
     </section>
   );
 }
-
-const styles = {
-  card: {
-    background: "#1e293b",
-    border: "1px solid #334155",
-    borderRadius: "20px",
-    padding: "24px",
-  },
-  title: {
-    marginTop: 0,
-    marginBottom: "16px",
-    color: "#e2e8f0",
-    fontSize: "20px",
-  },
-};

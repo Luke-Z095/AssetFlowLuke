@@ -1,16 +1,16 @@
 export default function Holdings() {
   return (
-    <div style={styles.page}>
-      <h1 style={styles.title}>Holdings</h1>
+    <div className="page-stack">
+      <h1 className="page-title">Holdings</h1>
 
-      <div style={styles.cards}>
-        <div style={styles.card}>Total Value: $152,430</div>
-        <div style={styles.card}>PnL: +$2,300</div>
-        <div style={styles.card}>Positions: 18</div>
+      <div className="stats-grid">
+        <div className="stat-card">Total Value: $152,430</div>
+        <div className="stat-card">PnL: +$2,300</div>
+        <div className="stat-card">Positions: 18</div>
       </div>
 
-      <div style={styles.tableCard}>
-        <table style={styles.table}>
+      <div className="table-card">
+        <table className="data-table">
           <thead>
             <tr>
               <th>Symbol</th>
@@ -22,13 +22,13 @@ export default function Holdings() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>AAPL</td>
+            <tr className="table-row">
+              <td style={{ fontWeight: 700, color: "#60a5fa" }}>AAPL</td>
               <td>35</td>
               <td>$120</td>
               <td>$145</td>
               <td>$5,000</td>
-              <td style={{ color: "#22c55e" }}>+$886</td>
+              <td style={{ color: "#34d399", fontWeight: 700 }}>+$886</td>
             </tr>
           </tbody>
         </table>
@@ -36,53 +36,3 @@ export default function Holdings() {
     </div>
   );
 }
-
-
-const styles = {
-  page: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "20px",
-  },
-
-  title: {
-    color: "#e2e8f0",
-    fontSize: "26px",
-    margin: 0,
-  },
-
-  cards: {
-    display: "flex",
-    gap: "16px",
-  },
-
-  card: {
-    background: "#1e293b",
-    border: "1px solid #334155",
-    padding: "16px",
-    borderRadius: "12px",
-    color: "#e2e8f0",
-    flex: 1,
-  },
-
-  cardLarge: {
-    background: "#1e293b",
-    border: "1px solid #334155",
-    padding: "20px",
-    borderRadius: "16px",
-    color: "#e2e8f0",
-  },
-
-  tableCard: {
-    background: "#1e293b",
-    border: "1px solid #334155",
-    borderRadius: "16px",
-    padding: "20px",
-  },
-
-  table: {
-    width: "100%",
-    borderCollapse: "collapse",
-    color: "#e2e8f0",
-  },
-};

@@ -19,12 +19,13 @@ const fallbackData = [
 ];
 
 export default function PerformanceChart({ data }) {
-  // 如果后端还没接 → 用假数据
   const chartData = data && data.length ? data : fallbackData;
 
   return (
-    <section className="chart-card" style={styles.card}>
-      <h2 style={styles.title}>Portfolio Performance</h2>
+    <section className="panel chart-card" style={{ padding: "24px" }}>
+      <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "20px", color: "#f8fafc" }}>
+        Portfolio Performance
+      </h2>
 
       <div style={{ width: "100%", height: 300 }}>
         <ResponsiveContainer width="100%" height="100%">
@@ -48,7 +49,7 @@ export default function PerformanceChart({ data }) {
               contentStyle={{
                 backgroundColor: "#0f172a",
                 border: "1px solid #334155",
-                borderRadius: "12px",
+                borderRadius: "8px",
                 color: "#e2e8f0",
               }}
               labelStyle={{ color: "#e2e8f0" }}
@@ -58,9 +59,9 @@ export default function PerformanceChart({ data }) {
               type="monotone"
               dataKey="value"
               stroke="#3b82f6"
-              strokeWidth={3}
-              dot={{ r: 4, fill: "#3b82f6" }}
-              activeDot={{ r: 6 }}
+              strokeWidth={2.5}
+              dot={{ r: 3.5, fill: "#3b82f6" }}
+              activeDot={{ r: 5 }}
             />
           </LineChart>
         </ResponsiveContainer>
@@ -68,18 +69,3 @@ export default function PerformanceChart({ data }) {
     </section>
   );
 }
-
-const styles = {
-  card: {
-    background: "#1e293b",
-    border: "1px solid #334155",
-    borderRadius: "20px",
-    padding: "24px",
-  },
-  title: {
-    marginTop: 0,
-    marginBottom: "16px",
-    color: "#e2e8f0",
-    fontSize: "20px",
-  },
-};

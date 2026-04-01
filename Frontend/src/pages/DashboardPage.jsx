@@ -7,58 +7,44 @@ import PerformanceChart from "../components/PerformanceChart";
 import HoldingsTable from "../components/HoldingsTable";
 
 export default function DashboardPage() {
-    const [dashboardData, setDashboardData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+  const [dashboardData, setDashboardData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-    useEffect(() => {
-        async function fetchDashboard() {
-            try {
-                const data = await getDashboardOverview();
-                console.log("dashboard overview:", data);
-                setDashboardData(data);
-            } catch (err) {
-                console.error(err);
-                setError("Failed to load dashboard data");
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchDashboard();
-    }, []);
-
-    if (loading) {
-        return <div style={{ color: "#e2e8f0" }}>Loading dashboard...</div>;
+  useEffect(() => {
+    async function fetchDashboard() {
+      try {
+        const data = await getDashboardOverview();
+        setDashboardData(data);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load dashboard data");
+      } finally {
+        setLoading(false);
+      }
     }
 
-    if (error) {
-        return <div style={{ color: "#ef4444" }}>{error}</div>;
-    }
+    fetchDashboard();
+  }, []);
 
-    return (
-        <div style={styles.main}>
-            <KpiCards data={dashboardData} />
+  if (loading) {
+    return <div style={{ color: "#cbd5e1" }}>Loading dashboard...</div>;
+  }
 
-            <div style={styles.chartGrid}>
-                <AllocationChart data={dashboardData?.allocation || []} />
-                <PerformanceChart />
-            </div>
+  if (error) {
+    return <div style={{ color: "#f87171" }}>{error}</div>;
+  }
 
-            <HoldingsTable data={dashboardData?.topHoldings || []} />
-        </div>
-    );
+  return (
+    <div className="page-stack">
+      <KpiCards data={dashboardData} />
+
+      <div style={{ display: "grid", gap: "20px", gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+        <AllocationChart data={dashboardData?.allocation || []} />
+        <PerformanceChart />
+      </div>
+
+      <HoldingsTable data={dashboardData?.topHoldings || []} />
+    </div>
+  );
 }
-
-const styles = {
-    main: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-    },
-    chartGrid: {
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "20px",
-    },
-};
